@@ -1,6 +1,9 @@
 import express from "express";
 const router = express.Router();
-import { login, register } from "../controllers/userController.js";
+import { login, register, jwtcheck } from "../controllers/userController.js";
+
+// jwtcheck endpoint
+router.get("/jwtcheck", jwtcheck);
 
 // login endpoint
 router.post("/login", login);

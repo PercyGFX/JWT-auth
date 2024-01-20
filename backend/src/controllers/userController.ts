@@ -101,3 +101,28 @@ export const register = async (req: Request, res: Response) => {
     res.status(500).json({ message: "Internal server error." });
   }
 };
+
+// jwt check
+export const jwtcheck = async (req: Request, res: Response) => {
+  const token = req.cookies.jwt;
+
+  if (!token) {
+    return res.status(401).json({
+      message: "Unauthorized",
+    });
+  }
+
+  try {
+    //check if jwt valid
+    const decodedToken = jwt.verify(token, process.env.JWT_SECRET!);
+
+    res.status(200).json({
+      message: "JWT verification successful.",
+      data: decodedToken,
+    });
+  } catch (error) {
+    return res.status(401).json({
+      message: "Unauthorized",
+    });
+  }
+};

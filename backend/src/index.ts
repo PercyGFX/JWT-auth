@@ -5,6 +5,7 @@ import * as dotenv from "dotenv";
 dotenv.config();
 import { ConnectToMongoDB } from "./utils/database.js";
 import router from "./routes/userRoutes.js";
+import cookieParser from "cookie-parser";
 
 // Configure CORS to allow requests from your frontend
 app.use(
@@ -18,6 +19,7 @@ app.use(
 // middlewares
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(cookieParser());
 
 // mongo connect
 ConnectToMongoDB(process.env.MONGO_URI);
