@@ -25,18 +25,22 @@ export default function Login() {
             layout="vertical"
           >
             <Form.Item
-              name="username"
+              name="email"
               rules={[
                 {
                   required: true,
-                  message: "Please input your username!",
+                  message: "Please input your email!",
+                },
+                {
+                  type: "email",
+                  message: "Please enter a valid email address!",
                 },
               ]}
             >
               <Input
                 maxLength={50}
                 className="rounded-full py-2 text-lg drop-shadow-sm"
-                placeholder="Username"
+                placeholder="Email"
               />
             </Form.Item>
 

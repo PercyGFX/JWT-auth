@@ -41,6 +41,26 @@ export default function Register() {
             </Form.Item>
 
             <Form.Item
+              name="email"
+              rules={[
+                {
+                  required: true,
+                  message: "Please input your email!",
+                },
+                {
+                  type: "email",
+                  message: "Please enter a valid email address!",
+                },
+              ]}
+            >
+              <Input
+                maxLength={50}
+                className="rounded-full py-2 text-lg drop-shadow-sm"
+                placeholder="Email"
+              />
+            </Form.Item>
+
+            <Form.Item
               name="password"
               // label="Password"
               rules={[
