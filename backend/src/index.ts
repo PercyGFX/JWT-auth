@@ -2,7 +2,9 @@ import express from "express";
 const app = express();
 import cors from "cors";
 import * as dotenv from "dotenv";
+dotenv.config();
 import { ConnectToMongoDB } from "./utils/database.js";
+import router from "./routes/userRoutes.js";
 
 // Configure CORS to allow requests from your frontend
 app.use(
@@ -13,11 +15,18 @@ app.use(
   })
 );
 
+// middlewares
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
 // mongo connect
 ConnectToMongoDB(process.env.MONGO_URI);
 
+// routes
+app.use("/", router);
+
 app.get("/", (req, res) => {
-  res.send("helloo");
+  res.send("helloo from 5000");
 });
 
 const port = process.env.PORT || 5000; // port

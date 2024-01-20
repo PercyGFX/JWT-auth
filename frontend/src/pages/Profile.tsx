@@ -1,7 +1,7 @@
 import React from "react";
 import { Button, Form, Input } from "antd";
 
-export default function Login() {
+export default function Profile() {
   const onFinish = (values: any) => {
     console.log("Success:", values);
   };

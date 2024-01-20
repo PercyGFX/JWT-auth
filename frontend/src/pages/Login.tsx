@@ -1,9 +1,23 @@
 import React from "react";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, message } from "antd";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 export default function Login() {
+  const navigate = useNavigate();
   const onFinish = (values: any) => {
-    console.log("Success:", values);
+    axios
+      .post(`${process.env.REACT_APP_BACKEND}/login`, values, {
+        withCredentials: true,
+      })
+      .then((result) => {
+        message.success("Login success");
+        navigate("/");
+      })
+      .catch((error: any) => {
+        console.log(error);
+        message.error(error.response.data.message);
+      });
   };
   const onFinishFailed = (errorInfo: any) => {
     console.log("Failed:", errorInfo);
