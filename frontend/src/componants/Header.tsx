@@ -7,7 +7,7 @@ function Header() {
         <p className="mx-2 text-slate-900 font-semibold text-xl">JWT Auth</p>
       </div>
 
-      <div>Login</div>
+      <div></div>
     </div>
   );
 }
