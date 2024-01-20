@@ -44,10 +44,15 @@ router.post("/login", async (req, res, next) => {
     //create jwt token
     const token = jwt.sign(
       { email: user.email, username: user.username },
-      process.env.JWT_SECRET!
+      process.env.JWT_SECRET!,
+      { expiresIn: "1d" }
     );
 
-    res.cookie("jwt", token, { httpOnly: true });
+    res.cookie("jwt", token, {
+      httpOnly: false,
+      path: "/",
+      expires: new Date(Date.now() + 3600000),
+    });
 
     res.status(200).json({ message: "User Login successful." });
   } catch (error) {
